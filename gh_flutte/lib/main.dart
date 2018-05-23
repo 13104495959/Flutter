@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(new MyApp());
 
+// void main(List < String > arguments) {
+//   print(arguments);
+//   runApp(new MyApp());
+// }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -46,20 +51,20 @@ class MyApp extends StatelessWidget {
 
     /*lists*/
     // var 修饰的数组
-    var list = [1,2,3];
+    var list = [1, 2, 3];
     // 分析器推断list具有类型List<int>,声明完只能使用int赋值,使用其他类型的赋值会报错
-    print(list.length);// 3
-    print(list[0]);// 1
+    print(list.length); // 3
+    print(list[0]); // 1
     list[0] = 100;
     print(list[0]);
 
     // 注意final修饰的lists,里面的值任然可以被更改
-    final finalList = [1,2,3];
+    final finalList = [1, 2, 3];
     finalList[1] = 10000000;
     print(finalList[1]);
 
     // cosnt修饰的lists只能取值,不能修改值
-    const constlList = [1,2,3];
+    const constlList = [1, 2, 3];
     // 打开下面的额代码会报错
     // finalList[0] = 100;
     print(constlList[1]);
@@ -67,10 +72,10 @@ class MyApp extends StatelessWidget {
 
     /*maps*/
     // 分析器推断Map<String, String>
-    var varMap1 = { 'one' : 'one', 'two' : 'two' };
+    var varMap1 = {'one': 'one', 'two': 'two'};
     print(varMap1['one']);
     // 分析器推断Map<int, int>
-    var varMap2 = { 1 : 1, 2 : 2 };
+    var varMap2 = {1: 1, 2: 2};
     print(varMap2[2]);
     // 可以传入不同的键值对
     var varMap3 = new Map();
@@ -80,72 +85,87 @@ class MyApp extends StatelessWidget {
 
     /*方法*/
     // 1无参数无返回值
-    void function1 () {
+    void function1() {
       print('这是一个无参数无返回值带void关键字的方法');
-     }
+    }
+
     function1();
     // 可以省略 void 关键字
-    function2 () {
+    function2() {
       print('这是一个无参数无返回值省略void关键字的方法');
     }
+
     function2();
     // 2无参数有返回值
-    int function3 () {
+    int function3() {
       print('function3');
       return 10;
     }
+
     function3();
     // 3有必须参数无返回值
-    void function4 (int number) {
+    void function4(int number) {
       print(number);
     }
+
     function4(10);
     // 4有必须参数有返回值
-    int function5 (int number) {
+    int function5(int number) {
       print(number);
       return number;
     }
+
     function5(100);
     // 5有多个必须参数有返回值
-    int function6 (int number1, int number2, int number3) {
+    int function6(int number1, int number2, int number3) {
       print(number1 + number2 + number3);
       return number1 + number2;
     }
+
     function6(100, 100, 100);
     // 可选参数,可选参数可以是位置或命名的，但不能同时包含两者。例如：paramName: value
     // 可选参数可以使用=来设置可选参数的默认值
 
     // 命名参数使用{}包裹,并且需要指定参数的形参和类型,例如{int number2, int number3}
     // 命名参数, 可选参数必须在必须参数的后面,可选参数后面不能有必须参数!!!!!!!
-    void enableFlags (int number1, {int number2 = 100, int number3}) {
+    void enableFlags(int number1, {int number2 = 100, int number3}) {
       print('可选参数的命名参数');
       print(number1);
       print(number2);
       print(number1 + number2 + number3);
     }
+
     // 调用可选参数的时候必须输入可选参数的形参命名,参数的对应是根据参数的key来判断
-    enableFlags(1000, number3: 100,number2: 10000000);
+    enableFlags(1000, number3: 100, number2: 10000000);
     // 位置参数
     // 位置参数使用[]包裹,并且需要指定参数的形参和类型,例如[int number2, int number3]
     // 位置参数, 可选参数必须在必须参数的后面,可选参数后面不能有必须参数!!!!!!!
-    int enable (int number1, [int number2 = 100, int number3]) {
+    int enable(int number1, [int number2 = 100, int number3]) {
       print(number1 + number2);
       return number1 + number2;
     }
+
     // 调用可选参数的时候不需要输入形参的命名,会根据位置计算出对应的参数,参数的对应是根据参数在数组中的位置来判断,没办法改变传入的参数在方法中的对应的位置
     enable(100, 101);
     // lists和map做参数
     void doStuff(
-    {List<int> list = const [1, 2, 3],
-    Map<String, String> gifts = const {
-      'first': 'paper',
-      'second': 'cotton',
-      'third': 'leather'
-    }}) {
-    print('list:  $list');
-    print('gifts: $gifts');
+        {List<int> list = const [1, 2, 3],
+        Map<String, String> gifts = const {
+          'first': 'paper',
+          'second': 'cotton',
+          'third': 'leather'
+        }}) {
+      print('list:  $list');
+      print('gifts: $gifts');
     }
+
     doStuff();
+
+    // 匿名函数
+    var list1 = ['1', 'bananas', 'oranges'];
+    list1.forEach((item) {
+      print('${list1.indexOf(item)}: $item');
+    });
 
     return new MaterialApp(
       title: 'GH',
